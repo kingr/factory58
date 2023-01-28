@@ -1,0 +1,73 @@
+<html> 
+  <body> 
+    <canvas width="800" height="600" id="canvas"></canvas> 
+    <script> 
+    // shim layer with setTimeout fallback 
+    window.requestAnimFrame = (function(){ 
+      return  window.requestAnimationFrame       ||  
+              window.webkitRequestAnimationFrame ||  
+              window.mozRequestAnimationFrame    ||  
+              window.oRequestAnimationFrame      ||  
+              window.msRequestAnimationFrame     ||  
+              function( callback ){ 
+                window.setTimeout(callback, 1000 / 60); 
+              }; 
+    })(); 
+
+    var canvas = document.getElementById('canvas'); 
+          var c = canvas.getContext('2d'); 
+          c.beginPath();
+          c.strokeStyle = 'blue';
+          c.moveTo(0,20);
+          c.lineTo(95, 20);
+          c.lineTo(95, 70);
+          c.lineTo(200, 70);
+          c.lineTo(200, 20);
+          c.stroke();
+          c.fillStyle = "tomato"; 
+          // c.fillRect(185,0,25,25); 
+
+
+      var x = 0; 
+      var y = 8; 
+
+      function drawIt() { 
+          if (y === 0) {
+            window.requestAnimFrame(drawIt);   
+          }
+          window.requestAnimFrame(drawIt); 
+          var canvas = document.getElementById('canvas'); 
+          var c = canvas.getContext('2d'); 
+          c.clearRect(0,0,canvas.width,canvas.height); 
+          c.beginPath();
+          c.strokeStyle = 'blue';
+          c.moveTo(0,20);
+          c.lineTo(95, 20);
+          c.lineTo(95, 70);
+          c.lineTo(200, 70);
+          c.lineTo(200, 20);
+          c.stroke();
+          c.fillStyle = "tomato"; 
+          c.fillRect(x,y,25,25); 
+          
+          if (x >= 185) {
+            x >= 185 ? y-- : null;
+          } else {
+            x >= 0 && x <= 80 ? x++ : null;
+            x >= 80 && y <= 55 ? y++ : null;
+            x > 80 && y > 55 ? x++ : null;
+          }
+
+          console.log(`x:${x} y:${y}`)
+      } 
+
+      window.requestAnimFrame(drawIt); 
+      
+      
+      // <a href="#" onclick="window.requestAnimFrame(drawIt);">Re-run</a>
+
+    
+
+    </script> 
+  </body> 
+</html> 
