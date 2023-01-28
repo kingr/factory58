@@ -9,4 +9,4 @@
 - `cd client`
 - `yarn`
 - `yarn start` 
-- `storybook` 
+- `yarn storybook` 
